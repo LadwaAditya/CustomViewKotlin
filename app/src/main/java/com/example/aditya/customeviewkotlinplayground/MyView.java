@@ -63,8 +63,6 @@ public class MyView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
-
         canvas.drawRect(0, 0, mSize, mSize, paintRed);
         canvas.drawText("Rectangle", mSize / 4, mSize / 2, paintGreen);
 
