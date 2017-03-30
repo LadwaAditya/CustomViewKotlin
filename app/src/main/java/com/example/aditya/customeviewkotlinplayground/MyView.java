@@ -16,6 +16,8 @@ import android.view.View;
 public class MyView extends View {
 
     private final String TAG = MyView.class.getSimpleName();
+    private final float SCALE_FACTOR = 1.1F;
+
     private Paint paintRed;
     private Paint paintGreen;
 
@@ -49,20 +51,23 @@ public class MyView extends View {
         }
         paintRed = new Paint();
         paintRed.setColor(Color.RED);
+
+
         paintGreen = new Paint();
         paintGreen.setColor(Color.GREEN);
+        paintGreen.setStyle(Paint.Style.FILL);
+        paintGreen.setTextSize(40);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        right = canvas.getWidth() - mSize;
-        bottom = canvas.getHeight() - mSize;
 
 
         canvas.drawRect(0, 0, mSize, mSize, paintRed);
-        canvas.drawText("Rect", 0, 0, mSize, mSize, paintGreen);
+        canvas.drawText("Rectangle", mSize / 4, mSize / 2, paintGreen);
+
     }
 
     @Override
@@ -76,12 +81,12 @@ public class MyView extends View {
         final int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                mSize = (int) (mSize * 1.2);
+                mSize = (int) (mSize * SCALE_FACTOR);
                 requestLayout();
                 invalidate();
                 return true;
             case MotionEvent.ACTION_UP:
-                mSize = (int) (mSize / 1.2);
+                mSize = (int) (mSize / SCALE_FACTOR);
                 requestLayout();
                 invalidate();
                 return true;
